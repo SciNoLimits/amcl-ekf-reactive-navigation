@@ -34,33 +34,72 @@ def generate_launch_description():
         ],
     )
     
-    robot_description = ParameterValue(Command(["xacro ", description]), value_type=str)
-    rsp = Node(package="robot_state_publisher", executable="robot_state_publisher",
-               parameters=[{"robot_description": robot_description, "use_sim_time": use_sim_time}],
-               output="screen")
+    robot_description = ParameterValue(
+        Command(["xacro ", description]),
+        value_type=str,
+    )
+    rsp = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        parameters=[{
+            "robot_description": robot_description,
+            "use_sim_time": use_sim_time,
+        }],
+        output="screen",
+    )
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(gazebo_launch),
-        launch_arguments={"gz_args": ["-r -v 3 ", world]}.items())
-    spawn = Node(package="ros_gz_sim", executable="create", arguments=[
-        "-name", "robot", "-topic", "robot_description", "-x", "0", "-y", "0", "-z", "0.15"
-    ], output="screen")
-    bridge = Node(package="ros_gz_bridge", executable="parameter_bridge",
-                  parameters=[{"config_file": bridge_config}], output="screen")
-    jsb = Node(package="controller_manager", executable="spawner",
-               arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
-               output="screen")
-    diff = Node(package="controller_manager", executable="spawner",
-                arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
-                output="screen")
-    arm = Node(package="controller_manager", executable="spawner",
-               arguments=["arm_position_controller", "--controller-manager", "/controller_manager"],
-               output="screen")
-               
+        launch_arguments={"gz_args": ["-r -v 3 ", world]}.items(),
+    )
+    spawn = Node(
+        package="ros_gz_sim",
+        executable="create",
+        arguments=[
+            "-name",
+            "robot",
+            "-topic",
+            "robot_description",
+            "-x",
+            "0",
+            "-y",
+            "0",
+            "-z",
+            "0.15",
+        ],
+        output="screen",
+    )
+    bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        parameters=[{"config_file": bridge_config}],
+        output="screen",
+    )
+    jsb = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager",
+            "/controller_manager",
+        ],
+        output="screen",
+    )
+    diff = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "diff_drive_controller",
+            "--controller-manager",
+            "/controller_manager",
+        ],
+        output="screen",
+    )
+
     return LaunchDescription([
         set_gazebo_resources,
         DeclareLaunchArgument("world", default_value=default_world, description="Gazebo SDF world"),
         DeclareLaunchArgument("use_sim_time", default_value="true"),
         gazebo, rsp, bridge,
         TimerAction(period=3.0, actions=[spawn]),
-        TimerAction(period=6.0, actions=[jsb, diff, arm]),
+        TimerAction(period=6.0, actions=[jsb, diff]),
     ])

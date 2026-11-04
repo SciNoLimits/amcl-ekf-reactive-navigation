@@ -3,7 +3,7 @@
   <name>robot_gazebo</name>
   <version>0.1.0</version>
   <description>Gazebo simulation, sensors and ROS 2 control for the mobile robot.</description>
-  <maintainer email="maintainer@example.com">scinolimits</maintainer>
+  <maintainer email="prazwaldutta7@gmail.com">scinolimits</maintainer>
   <license>MIT</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <exec_depend>robot_description</exec_depend>

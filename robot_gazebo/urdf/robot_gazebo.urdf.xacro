@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find robot_description)/urdf/materials.xacro"/>
+  <!-- <xacro:include filename="$(find robot_description)/urdf/materials.xacro"/> -->
   <xacro:include filename="$(find robot_description)/urdf/turtlebot3_waffle_pi.urdf.xacro"/>
   <xacro:turtlebot3_waffle_pi prefix=""/>
   <joint name="base_fixed" type="fixed">

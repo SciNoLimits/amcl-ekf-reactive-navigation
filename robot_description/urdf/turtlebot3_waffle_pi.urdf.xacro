@@ -6,7 +6,7 @@
 
   <xacro:macro name="turtlebot3_waffle_pi" params="prefix">
 
-  <xacro:include filename="materials.xacro"/>
+  <xacro:include filename="$(find robot_description)/urdf/materials.xacro"/>
 
   <xacro:property
     name="meshes_file_direction"
@@ -226,7 +226,5 @@
   <link name="${prefix}camera_rgb_optical_frame"/>
 
   </xacro:macro>
-
-  <xacro:turtlebot3_waffle_pi prefix=""/>
 
 </robot>

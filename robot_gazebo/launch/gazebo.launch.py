@@ -85,15 +85,13 @@ def generate_launch_description():
         output="screen",
     )
     diff = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=[
-            "diff_drive_controller",
-            "--controller-manager",
-            "/controller_manager",
-        ],
-        output="screen",
+      package="controller_manager", executable="spawner",
+      arguments=["diff_drive_controller", "-c", "/controller_manager",
+                 "--controller-ros-args",
+                 "-r /diff_drive_controller/cmd_vel:=/cmd_vel -r /diff_drive_controller/odom:=/odom"],
+      output="screen",
     )
+
 
     return LaunchDescription([
         set_gazebo_resources,

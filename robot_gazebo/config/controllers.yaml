@@ -6,8 +6,6 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
     diff_drive_controller:
       type: diff_drive_controller/DiffDriveController
-    arm_position_controller:
-      type: forward_command_controller/ForwardCommandController
 
 diff_drive_controller:
   ros__parameters:
@@ -20,8 +18,3 @@ diff_drive_controller:
     base_frame_id: base_footprint
     enable_odom_tf: true
     use_stamped_vel: false
-
-arm_position_controller:
-  ros__parameters:
-    joints: [joint1, joint2, joint3, joint4, gripper_left_joint]
-    interface_name: position

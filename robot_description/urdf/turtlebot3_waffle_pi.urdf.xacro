@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!-- TurtleBot3 Waffle Pi -->
-<!--
-Copied and modified from turtlebot3 example -
-https://github.com/ROBOTIS-GIT/turtlebot3/blob/kinetic-devel/turtlebot3_description/urdf/turtlebot3_waffle_pi_for_open_manipulator.urdf.xacro
--->
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<robot name="turtlebot3_waffle_pi"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:macro name="turtlebot3_waffle_pi" params="prefix">
+
+  <xacro:include filename="materials.xacro"/>
 
   <xacro:property
     name="meshes_file_direction"
@@ -226,5 +226,7 @@ https://github.com/ROBOTIS-GIT/turtlebot3/blob/kinetic-devel/turtlebot3_descript
   <link name="${prefix}camera_rgb_optical_frame"/>
 
   </xacro:macro>
+
+  <xacro:turtlebot3_waffle_pi prefix=""/>
 
 </robot>

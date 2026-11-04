@@ -1,0 +1,28 @@
+{
+    "ROS2.distro": "jazzy",
+    "cmake.sourceDirectory": "/home/scinolimits/robotics/robot_modeling_and_simulation/rms_ws/src/amcl-ekf-reactive-navigation/robot_description",
+    "python.autoComplete.extraPaths": [
+        "/home/scinolimits/cs_moment_ws/build/moment_mujoco",
+        "/home/scinolimits/cs_moment_ws/install/moment_mujoco/lib/python3.12/site-packages",
+        "/home/scinolimits/cs_moment_ws/install/mujoco_ros2_control/lib/python3.12/site-packages",
+        "/home/scinolimits/cs_moment_ws/install/mujoco_ros2_control_msgs/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/opt/gz_sim_vendor/lib/python",
+        "/opt/ros/jazzy/opt/sdformat_vendor/lib/python",
+        "/opt/ros/jazzy/opt/gz_transport_vendor/lib/python",
+        "/opt/ros/jazzy/opt/gz_msgs_vendor/lib/python",
+        "/opt/ros/jazzy/opt/gz_math_vendor/lib/python",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/scinolimits/cs_moment_ws/build/moment_mujoco",
+        "/home/scinolimits/cs_moment_ws/install/moment_mujoco/lib/python3.12/site-packages",
+        "/home/scinolimits/cs_moment_ws/install/mujoco_ros2_control/lib/python3.12/site-packages",
+        "/home/scinolimits/cs_moment_ws/install/mujoco_ros2_control_msgs/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/opt/gz_sim_vendor/lib/python",
+        "/opt/ros/jazzy/opt/sdformat_vendor/lib/python",
+        "/opt/ros/jazzy/opt/gz_transport_vendor/lib/python",
+        "/opt/ros/jazzy/opt/gz_msgs_vendor/lib/python",
+        "/opt/ros/jazzy/opt/gz_math_vendor/lib/python",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}

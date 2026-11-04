@@ -1,0 +1,27 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    use_sim_time: true
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+    arm_position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["wheel_left_joint"]
+    right_wheel_names: ["wheel_right_joint"]
+    wheel_separation: 0.288
+    wheel_radius: 0.033
+    publish_rate: 50.0
+    odom_frame_id: odom
+    base_frame_id: base_footprint
+    enable_odom_tf: true
+    use_stamped_vel: false
+
+arm_position_controller:
+  ros__parameters:
+    joints: [joint1, joint2, joint3, joint4, gripper_left_joint]
+    interface_name: position

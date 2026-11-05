@@ -1,21 +1,28 @@
 <?xml version="1.0"?>
 <robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find robot_description)/urdf/turtlebot3_waffle_pi.urdf.xacro"/>
-  <xacro:turtlebot3_waffle_pi prefix=""/>
+  <xacro:include filename="$(find robot_description)/urdf/turtlebot3_waffle_pi.urdf.xacro" />
+  <xacro:turtlebot3_waffle_pi prefix="" />
 
   <!-- Gazebo Harmonic / gz_ros2_control hardware interface -->
   <ros2_control name="GazeboSimSystem" type="system">
-    <hardware><plugin>gz_ros2_control/GazeboSimSystem</plugin></hardware>
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
     <joint name="wheel_left_joint">
-      <command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/>
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
     </joint>
     <joint name="wheel_right_joint">
-      <command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/>
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
     </joint>
   </ros2_control>
 
   <gazebo>
-    <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <plugin filename="libgz_ros2_control-system.so"
+      name="gz_ros2_control::GazeboSimROS2ControlPlugin">
       <parameters>$(find robot_gazebo)/config/controllers.yaml</parameters>
     </plugin>
   </gazebo>
@@ -23,23 +30,52 @@
   <!-- 2D lidar; publishes sensor_msgs/LaserScan through Gazebo Transport/ROS bridge -->
   <gazebo reference="base_scan">
     <sensor name="robot_lidar" type="gpu_lidar">
-      <topic>/scan</topic><update_rate>10</update_rate>
+      <topic>/scan</topic>
+      <update_rate>10</update_rate>
       <lidar>
-        <scan><horizontal><samples>360</samples><resolution>1</resolution><min_angle>-3.14159</min_angle><max_angle>3.14159</max_angle></horizontal></scan>
-        <range><min>0.12</min><max>3.5</max><resolution>0.01</resolution></range>
+        <gz_frame_id>base_scan</gz_frame_id>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.12</min>
+          <max>3.5</max>
+          <resolution>0.01</resolution>
+        </range>
       </lidar>
-      <always_on>true</always_on><visualize>true</visualize>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
     </sensor>
   </gazebo>
   <gazebo reference="imu_link">
     <sensor name="robot_imu" type="imu">
-      <topic>/imu</topic><update_rate>100</update_rate><always_on>true</always_on>
+      <topic>/imu</topic>
+      <update_rate>100</update_rate>
+      <always_on>true</always_on>
     </sensor>
   </gazebo>
   <gazebo reference="camera_link">
     <sensor name="robot_camera" type="camera">
-      <topic>/camera/image</topic><update_rate>15</update_rate><always_on>true</always_on>
-      <camera><horizontal_fov>1.047</horizontal_fov><image><width>640</width><height>480</height><format>R8G8B8</format></image><clip><near>0.05</near><far>8.0</far></clip></camera>
+      <topic>/camera/image</topic>
+      <update_rate>15</update_rate>
+      <always_on>true</always_on>
+      <camera>
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
     </sensor>
   </gazebo>
 </robot>

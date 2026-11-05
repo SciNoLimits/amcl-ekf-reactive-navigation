@@ -12,7 +12,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time")
     world = LaunchConfiguration("world")
     description = PathJoinSubstitution([FindPackageShare("robot_gazebo"), "urdf", "robot_gazebo.urdf.xacro"])
-    default_world = PathJoinSubstitution([FindPackageShare("robot_gazebo"), "worlds", "empty.sdf"])
+    default_world = PathJoinSubstitution([FindPackageShare("robot_gazebo"), "worlds", "opil_factory.world"])
     controllers = PathJoinSubstitution([FindPackageShare("robot_gazebo"), "config", "controllers.yaml"])
     bridge_config = PathJoinSubstitution([FindPackageShare("robot_gazebo"), "config", "bridge.yaml"])
     gazebo_launch = PathJoinSubstitution([FindPackageShare("ros_gz_sim"), "launch", "gz_sim.launch.py"])

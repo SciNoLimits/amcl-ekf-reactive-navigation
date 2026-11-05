@@ -21,10 +21,17 @@ def generate_launch_description():
         FindPackageShare("robot_description"),
         ".."
     ])
+    
+    models_path = PathJoinSubstitution([
+    FindPackageShare("robot_gazebo"),
+    "models"
+])
 
     set_gazebo_resources = SetEnvironmentVariable(
         name="GZ_SIM_RESOURCE_PATH",
         value=[
+            models_path,
+            ":",
             description_resource_root,
             ":",
             EnvironmentVariable(

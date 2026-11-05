@@ -32,8 +32,8 @@
     <sensor name="robot_lidar" type="gpu_lidar">
       <topic>/scan</topic>
       <update_rate>10</update_rate>
+      <gz_frame_id>base_scan</gz_frame_id>
       <lidar>
-        <gz_frame_id>base_scan</gz_frame_id>
         <scan>
           <horizontal>
             <samples>360</samples>

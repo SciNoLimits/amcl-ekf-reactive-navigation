@@ -204,16 +204,17 @@ or provide a separate launch wrapper.
 ## How the system fits together
 
 ```mermaid
+
 flowchart LR
-    X[robot_description<br/>URDF/Xacro] --> RSP[robot_state_publisher]
+    X["robot_description<br/>URDF/Xacro"] --> RSP[robot_state_publisher]
     X --> S[ros_gz_sim create]
     S --> G[Gazebo Sim]
     G --> B[ros_gz_bridge]
     G --> C[gz_ros2_control]
     C --> D[diff_drive_controller]
-    B --> L[/scan, /imu, /camera/image, /clock]
-    D --> O[/odom and TF odom -> base_footprint]
-    M[room_map.yaml + room_map.pgm] --> N[Nav2 bringup]
+    B --> L["/scan, /imu, /camera/image, /clock"]
+    D --> O["/odom and TF odom -> base_footprint"]
+    M["room_map.yaml + room_map.pgm"] --> N[Nav2 bringup]
     P[nav2_params.yaml] --> N
     L --> N
     O --> N

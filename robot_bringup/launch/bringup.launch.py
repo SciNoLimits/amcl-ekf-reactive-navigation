@@ -35,9 +35,20 @@ def generate_launch_description():
         
     )
     
+    ekf_launch = PathJoinSubstitution([
+        FindPackageShare("ekf_localization"),
+        "launch",
+        "ekf.launch.py"
+    ])
+
+    ekf_localization_launch = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(ekf_launch)
+    )
+    
+    bringup_dir = get_package_share_directory("robot_bringup")
     return LaunchDescription([
         robot_gazebo_launch,
+        TimerAction(period=3.0, actions=[ekf_localization_launch]),
         TimerAction(period=3.0, actions=[robot_navigation_launch]),
         TimerAction(period=6.0, actions=[rviz2])
-        
     ])

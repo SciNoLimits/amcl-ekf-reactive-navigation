@@ -1,0 +1,27 @@
+# Tuning values for the Person 4 reactive layer. Distances in metres, measured
+# from the robot's body surface. Times in seconds. Speeds in m/s or rad/s.
+/**:
+  ros__parameters:
+    stop_distance: 0.35       # something this close ahead stops the robot
+    side_distance: 0.25       # something this close at the side triggers a turn
+
+obstacle_detector:
+  ros__parameters:
+    corridor_margin: 0.05     # extra width each side of the "straight ahead" corridor
+    side_angle_min_deg: 20.0  # side sectors start this far from straight ahead
+    side_angle_max_deg: 80.0  # ...and end here
+    max_range: 2.0            # beyond this counts as free space
+
+reactive_controller:
+  ros__parameters:
+    clear_distance: 0.50      # must be this clear before resuming (hysteresis)
+    side_margin: 0.15         # left and right must differ by this to pick a side
+    turn_speed: 0.6
+    stop_hold: 0.6            # minimum stop time; the costmap needs a moment to update
+    stop_timeout: 4.0         # then escalate to a replan
+    turn_timeout: 2.5
+    replan_timeout: 3.0       # then hand back to Nav2's recovery behaviours
+    replan_settle: 1.1        # Nav2's behaviour tree adopts new paths at 1 Hz
+    grace_period: 3.0         # after an override, let Nav2 steer away
+    grace_stop_distance: 0.15
+    path_check_rate: 4.0      # /is_path_valid calls per second

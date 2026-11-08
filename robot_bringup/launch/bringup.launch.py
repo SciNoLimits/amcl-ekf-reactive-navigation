@@ -21,8 +21,16 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(gazebo_launch)
     )
     
+    # [P2] Pass the Nav2 params file through, so the AMCL variant can be chosen at bringup:
+    #   ros2 launch robot_bringup bringup.launch.py params_file:=<path>
+    default_params_file = os.path.join(
+        get_package_share_directory("robot_navigation"),
+        "config",
+        "nav2_params_amcl_tuned.yaml"
+    )
     robot_navigation_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(navigation_launch)
+        PythonLaunchDescriptionSource(navigation_launch),
+        launch_arguments={"params_file": LaunchConfiguration("params_file")}.items()  # [P2]
     )
     
     rviz2 = Node(
@@ -46,6 +54,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         DeclareLaunchArgument("enable_reactive", default_value="true"),  # [P4]
+        DeclareLaunchArgument("params_file", default_value=default_params_file),  # [P2]
         robot_gazebo_launch,
         TimerAction(period=3.0, actions=[robot_navigation_launch, reactive_launch]),  # [P4] added reactive_launch
         TimerAction(period=6.0, actions=[rviz2])

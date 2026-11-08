@@ -1,9 +1,9 @@
 import os
 from launch import LaunchDescription
-from launch.substitutions import PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution  # [P4] LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
-from launch.actions import IncludeLaunchDescription, TimerAction
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction  # [P4] DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_share_directory
 
@@ -35,9 +35,19 @@ def generate_launch_description():
         
     )
     
+    # [P4] Reactive layer. It must always run: collision_monitor now takes its input
+    # from it. enable_reactive:=false makes it forward Nav2's commands unchanged.
+    reactive_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([FindPackageShare("robot_reactive"), "launch", "reactive.launch.py"])
+        ),
+        launch_arguments={"enable_reactive": LaunchConfiguration("enable_reactive")}.items()
+    )
+
     return LaunchDescription([
+        DeclareLaunchArgument("enable_reactive", default_value="true"),  # [P4]
         robot_gazebo_launch,
-        TimerAction(period=3.0, actions=[robot_navigation_launch]),
+        TimerAction(period=3.0, actions=[robot_navigation_launch, reactive_launch]),  # [P4] added reactive_launch
         TimerAction(period=6.0, actions=[rviz2])
         
     ])

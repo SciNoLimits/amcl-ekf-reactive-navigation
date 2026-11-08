@@ -1,0 +1,36 @@
+nav_eval:
+  ros__parameters:
+    use_sim_time: true
+    mode: amcl                  # label only: amcl | ekf  (override with -p mode:=ekf)
+    output_root: results
+    repeats: 3                  # trials per goal (task says 3 trials)
+    goal_timeout: 120.0         # sim seconds before a goal counts as TIMEOUT
+    goal_tolerance_xy: 0.30     # m, ground-truth check for "verified" success
+    stationary_secs: 10.0       # stationary recording after each goal (stability metric)
+    sample_hz: 10.0
+    settle_secs: 3.0
+
+    # --- frames / topics (change if the repo uses different names) ---
+    map_frame: map
+    base_frame: base_footprint
+    nav_action: /navigate_to_pose
+    plan_topic: /plan
+    cov_topic: /amcl_pose       # EKF run: /odometry/filtered (or whatever Person 3 publishes)
+    cov_type: pose_cov          # pose_cov (PoseWithCovarianceStamped) | odom (nav_msgs/Odometry)
+
+    # --- ground truth from Gazebo ---
+    world_name: default         # check: gz topic -l | grep dynamic_pose
+    gt_source: gz_cli           # gz_cli (reads names via gz topic, no bridge needed) | bridge
+    gt_topic: /world/default/dynamic_pose/info
+    gt_child_frame: robot   # model name; node prints available names if not found
+    map_origin_in_world: [-6.0, 2.0, 0.0]   # x, y, yaw of map frame in the Gazebo world frame
+
+    # --- resetting between trials ---
+    reset_mode: gz              # gz (teleport via gz service) | none (you reset manually)
+    model_name: robot
+    spawn_z: 0.01
+    publish_initial_pose: true  # AMCL: true. EKF: depends on the group's architecture
+    initial_pose_topic: /initialpose
+    clear_costmaps: true
+
+    goals_file: ''              # empty = installed config/goals.yaml

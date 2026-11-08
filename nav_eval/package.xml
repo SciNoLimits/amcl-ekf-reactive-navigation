@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>nav_eval</name>
+  <version>0.1.0</version>
+  <description>Performance evaluation harness (goal success rate, pose accuracy/variance, path deviation, stability) for AMCL vs EKF navigation</description>
+  <maintainer email="you@example.com">Person 5</maintainer>
+  <license>MIT</license>
+  <depend>rclpy</depend>
+  <depend>nav2_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>action_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_msgs</depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-pandas</exec_depend>
+  <exec_depend>python3-matplotlib</exec_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

@@ -1,0 +1,7 @@
+goal,trials,successes,rate_%,mode
+g1,3,3,100.0,amcl
+g2,3,3,100.0,amcl
+g3,3,3,100.0,amcl
+g1,3,3,100.0,ekf
+g2,3,2,66.66666666666667,ekf
+g3,3,3,100.0,ekf

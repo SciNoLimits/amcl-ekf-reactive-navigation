@@ -1,0 +1,59 @@
+{
+  "params": {
+    "mode": "ekf",
+    "output_root": "results",
+    "repeats": 3,
+    "goal_timeout": 120.0,
+    "goal_tolerance_xy": 0.3,
+    "stationary_secs": 10.0,
+    "sample_hz": 10.0,
+    "settle_secs": 3.0,
+    "map_frame": "map",
+    "base_frame": "base_footprint",
+    "nav_action": "/navigate_to_pose",
+    "plan_topic": "/plan",
+    "cov_topic": "/odometry/filtered",
+    "cov_type": "odom",
+    "world_name": "default",
+    "gt_topic": "/world/default/dynamic_pose/info",
+    "gt_child_frame": "robot",
+    "map_origin_in_world": [
+      -6.0,
+      2.0,
+      0.0
+    ],
+    "reset_mode": "gz",
+    "model_name": "robot",
+    "spawn_z": 0.01,
+    "publish_initial_pose": true,
+    "initial_pose_topic": "/initialpose",
+    "clear_costmaps": true,
+    "goals_file": "",
+    "gt_source": "gz_cli"
+  },
+  "start": {
+    "x": 0.0,
+    "y": 0.0,
+    "yaw": 0.0
+  },
+  "goals": [
+    {
+      "name": "g1",
+      "x": 3.0,
+      "y": -1.5,
+      "yaw": 0.0
+    },
+    {
+      "name": "g2",
+      "x": 3.0,
+      "y": 4.0,
+      "yaw": 0.0
+    },
+    {
+      "name": "g3",
+      "x": -0.5,
+      "y": 4.0,
+      "yaw": 0.0
+    }
+  ]
+}

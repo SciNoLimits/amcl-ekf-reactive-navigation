@@ -23,7 +23,7 @@ def generate_launch_description():
     params_file = os.path.join(
         robot_navigation_dir,
         'config',
-        'nav2_params.yaml'
+        'nav2_params_default.yaml'
     )
 
     nav2_launch = IncludeLaunchDescription(
